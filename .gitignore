@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Sass ###
+.sass-cache/
+*.css
+*.css.map
+*.sass.map
+*.scss.map
