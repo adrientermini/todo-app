@@ -31,7 +31,8 @@ public class TodoService {
 
     public List<TodoDTO> getAllTodo() {
         Iterable<Todo> iterable = this.getTodoRepository().findAll();
-        List<TodoDTO> result = StreamSupport.stream(iterable.spliterator(), false)
+        List<TodoDTO> result = StreamSupport
+                .stream(iterable.spliterator(), false)
                 .map(TodoMapper.INSTANCE::toDto)
                 .toList();
         log.debug("Find all TODOs");
