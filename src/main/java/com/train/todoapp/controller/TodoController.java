@@ -18,37 +18,37 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping("{id}")
-    public TodoDTO findById(@PathVariable final Long id){
+    public TodoDTO findById(@PathVariable final Long id) {
         return this.getTodoService().getTodoById(id);
     }
 
     @GetMapping
-    public List<TodoDTO> findAll(){
+    public List<TodoDTO> findAll() {
         return this.getTodoService().getAllTodo();
     }
 
     @DeleteMapping("{id}")
-    public TodoDTO deleteById(@PathVariable final Long id){
+    public TodoDTO deleteById(@PathVariable final Long id) {
         return this.getTodoService().deleteTodoById(id);
     }
 
     @PostMapping
-    public TodoDTO save(@RequestBody final TodoDTO todoDTO){
+    public TodoDTO save(@RequestBody final TodoDTO todoDTO) {
         return this.getTodoService().saveTodo(todoDTO);
     }
 
     @PutMapping("{id}")
-    public TodoDTO update(@PathVariable final Long id, @RequestBody final TodoDTO todoDTO){
+    public TodoDTO update(@PathVariable final Long id, @RequestBody final TodoDTO todoDTO) {
         TodoDTO currentToDo = this.getTodoService().getTodoById(id);
 
-        if(currentToDo != null){
+        if (currentToDo != null) {
             String title = todoDTO.getTitle();
-            if(title != null){
+            if (title != null) {
                 currentToDo.setTitle(title);
             }
 
             String description = todoDTO.getDescription();
-            if(description != null){
+            if (description != null) {
                 currentToDo.setDescription(description);
             }
             return this.getTodoService().saveTodo(currentToDo);
