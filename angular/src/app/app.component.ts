@@ -6,11 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'angular';
-  label = 'ez';
+  title :string = 'angular';
+  label :string = 'ez';
+  showed :boolean = false;
+
 
   public sayHello(): void{
-    alert(this.label);
+    this.showed = !this.showed;
   }
 
 }
