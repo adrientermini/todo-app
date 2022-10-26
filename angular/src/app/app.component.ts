@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular';
+  label = 'ez';
+
+  public sayHello(): void{
+    alert(this.label);
+  }
+
 }
