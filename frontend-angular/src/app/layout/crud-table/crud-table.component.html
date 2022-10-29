@@ -1,0 +1,5 @@
+<div *ngFor="let todo of todoManager.todos$ | async">
+  <span>ID : {{todo.id}}</span>
+  <span>Titre : {{todo.title}}</span>
+  <span>Description : {{todo.description}}</span>
+</div>
