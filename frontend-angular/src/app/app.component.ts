@@ -8,5 +8,5 @@ import {TodoManager} from "./manager/todo.manager";
   providers: [TodoManager]
 })
 export class AppComponent {
-  title = 'frontend-angular';
+  title = 'Todo App';
 }
