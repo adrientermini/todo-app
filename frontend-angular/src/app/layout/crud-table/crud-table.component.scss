@@ -1,0 +1,11 @@
+tr td button{
+  visibility: hidden;
+}
+
+tr:hover td button{
+  visibility: visible;
+}
+
+tr:hover{
+  background-color: #f6f6f6;
+}
