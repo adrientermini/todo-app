@@ -24,7 +24,7 @@ export class CrudTableComponent implements OnInit {
     this.todoManager.loadTodos();
     this.todoManager.todos$.subscribe(
       todos => this.todos = todos
-    )
+    );
   }
 
   ngOnInit(): void {
@@ -48,7 +48,12 @@ export class CrudTableComponent implements OnInit {
       rejectLabel: 'Non',
       accept: () => {
         this.todoManager.deleteTodo(todo).subscribe(
-          () => this.messageService.add({severity:'success', summary:'Supprimé', detail:'Ce Todo a correctement été supprimé.', icon: 'pi pi-trash'})
+          () => this.messageService.add({
+            severity:'success',
+            summary:'Supprimé',
+            detail:'Ce Todo a correctement été supprimé.',
+            icon: 'pi pi-trash'
+          })
         );
       }
     });

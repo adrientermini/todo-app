@@ -40,7 +40,10 @@ export class DialogDisplayComponent implements OnInit {
         ...this.todo,
         ...this.formGroup.value
       }
-    ).subscribe(() => { this.ddr.close(); });
+    ).subscribe(
+      () => {
+        this.ddr.close();
+      });
   }
 
   cancel(event: Event): void {
