@@ -20,9 +20,12 @@
         <td>{{todo.description}}</td>
         <td class="buttons">
           <button pButton pRipple pTooltip="Éditer" tooltipPosition="bottom" icon="pi pi-pencil" class="p-button mr-2" (click)="showDialog(todo)"></button>
-          <button pButton pRipple pTooltip="Supprimer" tooltipPosition="bottom" icon="pi pi-trash" class="p-button p-button-danger" (click)="deleteTodo(todo)"></button>
+          <button pButton pRipple pTooltip="Supprimer" tooltipPosition="bottom" icon="pi pi-trash" class="p-button p-button-danger" (click)="deleteTodo($event ,todo)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </p-card>
+
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>

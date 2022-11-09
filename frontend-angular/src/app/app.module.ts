@@ -16,6 +16,8 @@ import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {DialogModule} from "primeng/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastModule} from "primeng/toast";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ReactiveFormsModule,
     InputTextModule,
     InputTextareaModule,
-    DialogModule
+    DialogModule,
+    ToastModule,
+    ConfirmPopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]
