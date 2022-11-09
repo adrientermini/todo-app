@@ -13,7 +13,7 @@ export class TodoManager {
   ) {
   }
 
-  public loadTodos() {
+  public loadTodos(): void {
     this.todoService.findAllTodos().pipe(
       tap(todo => this.todoSubject.next(todo))
     ).subscribe();
