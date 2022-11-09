@@ -35,7 +35,7 @@ export class CrudTableComponent implements OnInit {
       header: (todo !== null) ? `Éditer Todo : ${todo.title}` : 'Nouveau Todo',
       width: '30vw',
       closable: true,
-      data: todo,
+      data: todo
     });
   }
 
@@ -48,7 +48,7 @@ export class CrudTableComponent implements OnInit {
       rejectLabel: 'Non',
       accept: () => {
         this.todoManager.deleteTodo(todo).subscribe(
-          () => this.messageService.add({severity:'warn', summary:'Supprimé', detail:'Ce Todo a correctement été supprimé.', icon: 'pi-trash'})
+          () => this.messageService.add({severity:'success', summary:'Supprimé', detail:'Ce Todo a correctement été supprimé.', icon: 'pi pi-trash'})
         );
       }
     });

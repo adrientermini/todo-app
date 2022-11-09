@@ -37,13 +37,10 @@ export class DialogDisplayComponent implements OnInit {
 
   save(): void {
     this.todoManager.saveTodo({
-        ... this.todo,
-        ... this.formGroup.value
+        ...this.todo,
+        ...this.formGroup.value
       }
-    ).subscribe(
-      () => {
-        this.ddr.close();
-      });
+    ).subscribe(() => { this.ddr.close(); });
   }
 
   cancel(event: Event): void {

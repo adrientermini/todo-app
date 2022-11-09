@@ -1,32 +1,30 @@
-<p-card>
+<div class="flex justify-content-between align-items-center">
   <h1>Todo Manager</h1>
-  <p-toolbar styleClass="mb-4">
-    <ng-template pTemplate="left">
-      <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2" (click)="showDialog()"></button>
-    </ng-template>
-  </p-toolbar>
-
-  <p-table [value]="this.todos" sortField="id">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Titre</th>
-        <th>Description</th>
-        <!-- Extra column to display buttons-->
-        <th></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-todo>
-      <tr>
-        <td>{{todo.title}}</td>
-        <td>{{todo.description}}</td>
-        <td class="buttons">
-          <button pButton pRipple pTooltip="Éditer" tooltipPosition="bottom" icon="pi pi-pencil" class="p-button mr-2" (click)="showDialog(todo)"></button>
-          <button pButton pRipple pTooltip="Supprimer" tooltipPosition="bottom" icon="pi pi-trash" class="p-button p-button-danger" (click)="deleteTodo($event ,todo)"></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</p-card>
+  <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success" (click)="showDialog()"></button>
+</div>
+<p-table responsiveLayout="scroll" [value]="this.todos" sortField="id">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Titre</th>
+      <th>Description</th>
+      <!-- Extra column to display buttons-->
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-todo>
+    <tr>
+      <td>{{todo.title}}</td>
+      <td>{{todo.description}}</td>
+      <td class="buttons">
+        <button pButton pRipple pTooltip="Éditer" tooltipPosition="bottom" icon="pi pi-pencil"
+                class="p-button-rounded p-button-outlined mr-2" (click)="showDialog(todo)"></button>
+        <button pButton pRipple pTooltip="Supprimer" tooltipPosition="bottom" icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-outlined"
+                (click)="deleteTodo($event ,todo)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
 
 <p-toast></p-toast>
 <p-confirmPopup></p-confirmPopup>

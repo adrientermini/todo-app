@@ -13,8 +13,8 @@
   </div>
 </form>
 <div class="flex justify-content-end flex-wrap">
-  <button pButton pRipple label="Annuler" icon="pi pi-times" class="flex align-items-center justify-content-center p-button-danger mr-2" (click)="cancel($event)"></button>
-  <button pButton pRipple label="Valider" icon="pi pi-check" class="flex align-items-center justify-content-center p-button-success" [disabled]="formGroup.invalid" (click)="save()"></button>
+  <button pButton pRipple label="Annuler" icon="pi pi-times" class="flex align-items-center justify-content-center p-button-outlined p-button-secondary mr-2" (click)="cancel($event)"></button>
+  <button pButton pRipple label="Valider" icon="pi pi-check" class="flex align-items-center justify-content-center p-button-outlined p-button-success" [disabled]="formGroup.invalid" (click)="save()"></button>
 </div>
 
 <p-confirmPopup></p-confirmPopup>
