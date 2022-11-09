@@ -3,10 +3,12 @@
     <div class="field col-12 md:col-12">
       <label>Titre</label>
       <input pInputText [formControlName]="'title'"/>
+      <small *ngIf="formGroup.value.title !== null && formGroup.value.title.length === 0" class="p-error">Veuillez entrer un titre.</small>
     </div>
     <div class="field col-12 md:col-12">
       <label>Description</label>
       <textarea pInputTextarea [autoResize]="true" [formControlName]="'description'"></textarea>
+      <small *ngIf="formGroup.value.description !== null && formGroup.value.description.length === 0" class="p-error">Veuillez entrer une description.</small>
     </div>
   </div>
 </form>
