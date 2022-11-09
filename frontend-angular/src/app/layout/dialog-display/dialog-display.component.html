@@ -1,0 +1,16 @@
+<form [formGroup]="formGroup">
+  <div class="p-fluid formgrid grid">
+    <div class="field col-12 md:col-12">
+      <label>Titre</label>
+      <input pInputText [formControlName]="'title'"/>
+    </div>
+    <div class="field col-12 md:col-12">
+      <label>Description</label>
+      <textarea pInputTextarea [autoResize]="true" [formControlName]="'description'"></textarea>
+    </div>
+  </div>
+</form>
+<div class="flex justify-content-end flex-wrap">
+  <button pButton pRipple label="Valider" icon="pi pi-check" class="flex align-items-center justify-content-center p-button-success mr-2" [disabled]="formGroup.invalid" (click)="save()"></button>
+  <button pButton pRipple label="Annuler" icon="pi pi-times" class="flex align-items-center justify-content-center p-button-danger" (click)="cancel()"></button>
+</div>

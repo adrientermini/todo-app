@@ -1,11 +1,11 @@
 <p-card>
   <p-toolbar styleClass="mb-4">
     <ng-template pTemplate="left">
-      <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2"></button>
+      <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2" (click)="showDialog()"></button>
     </ng-template>
   </p-toolbar>
 
-  <p-table [value]="this.todos" responsiveLayout="scroll">
+  <p-table [value]="this.todos" sortField="id">
     <ng-template pTemplate="header">
       <tr>
         <th>Titre</th>
@@ -19,7 +19,7 @@
         <td>{{todo.title}}</td>
         <td>{{todo.description}}</td>
         <td class="buttons">
-          <button pButton pRipple pTooltip="Éditer" tooltipPosition="bottom" icon="pi pi-pencil" class="p-button mr-2"></button>
+          <button pButton pRipple pTooltip="Éditer" tooltipPosition="bottom" icon="pi pi-pencil" class="p-button mr-2" (click)="showDialog(todo)"></button>
           <button pButton pRipple pTooltip="Supprimer" tooltipPosition="bottom" icon="pi pi-trash" class="p-button p-button-danger" (click)="deleteTodo(todo)"></button>
         </td>
       </tr>
