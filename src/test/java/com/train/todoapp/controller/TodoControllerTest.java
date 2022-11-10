@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.train.todoapp.dto.TodoDTO;
 import com.train.todoapp.service.TodoService;
-import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@RequiredArgsConstructor
 class TodoControllerTest {
 
     private static final String urlBase = "/todo";
@@ -84,6 +82,7 @@ class TodoControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(currentId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(todo.getTitle()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(todo.getDescription()));
     }
@@ -96,6 +95,7 @@ class TodoControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(currentId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(todo.getTitle()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(todo.getDescription()));
     }
@@ -108,6 +108,7 @@ class TodoControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(currentId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(todo.getTitle()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(todo.getDescription()));
     }
