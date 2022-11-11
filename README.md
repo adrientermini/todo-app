@@ -1,6 +1,6 @@
 # TODO's Manager Project - Full simple web app - API Rest & Frontend
 
-*UI available in :fr: only*
+*UI available in :fr: only (:globe_with_meridians: i18n coming soon!)*
 
 ![screenshot](screenshot.png "Preview")
 
