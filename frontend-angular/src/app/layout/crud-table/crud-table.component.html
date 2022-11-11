@@ -2,12 +2,31 @@
   <h1>Todo Manager</h1>
   <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success" (click)="showDialog()"></button>
 </div>
-<p-table responsiveLayout="scroll" [value]="this.todos" sortField="id">
+<p-table responsiveLayout="scroll" #data [value]="this.todos" [rows]="5" [paginator]="true"
+         [globalFilterFields]="['title','description']" sortField="id" styleClass="p-datatable-striped"
+         [rowHover]="true" dataKey="id" currentPageReportTemplate="Page {currentPage} sur {totalPages}"
+         [showCurrentPageReport]="true">
   <ng-template pTemplate="header">
     <tr>
-      <th>Titre</th>
-      <th>Description</th>
-      <!-- Extra column to display buttons-->
+      <th pSortableColumn="title">Titre
+        <p-sortIcon field="title"></p-sortIcon>
+      </th>
+      <th pSortableColumn="description">Description
+        <p-sortIcon field="description"></p-sortIcon>
+      </th>
+      <!-- Extra column to display buttons -->
+      <th></th>
+    </tr>
+    <tr>
+      <th>
+        <input pInputText type="text" (input)="data.filter($any($event.target)?.value, 'title', 'contains')"
+               [value]="$any(data.filters['title'])?.value" placeholder="Recherche par titre" class="w-full">
+      </th>
+      <th>
+        <input pInputText type="text" (input)="data.filter($any($event.target)?.value, 'description', 'contains')"
+               [value]="$any(data.filters['description'])?.value" placeholder="Recherche par description"
+               class="w-full">
+      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -23,6 +42,11 @@
                 (click)="deleteTodo($event ,todo)"></button>
       </td>
     </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex align-items-center justify-content-between">
+      Nombre total de Todo's : {{todos ? todos.length : 0 }}
+    </div>
   </ng-template>
 </p-table>
 

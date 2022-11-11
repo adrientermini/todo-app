@@ -32,7 +32,7 @@ export class CrudTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  public showDialog(todo: Todo = null): void{
+  public showDialog(todo: Todo = null): void {
     this.dialogService.open(DialogDisplayComponent, {
       header: (todo !== null) ? `Éditer Todo : ${todo.title}` : 'Nouveau Todo',
       width: '30vw',
@@ -51,9 +51,9 @@ export class CrudTableComponent implements OnInit, OnDestroy {
       accept: () => {
         this.subscriptions.add(this.todoManager.deleteTodo(todo).subscribe(
           () => this.messageService.add({
-            severity:'success',
-            summary:'Supprimé',
-            detail:'Ce Todo a correctement été supprimé.',
+            severity: 'success',
+            summary: 'Supprimé',
+            detail: 'Ce Todo a correctement été supprimé.',
             icon: 'pi pi-trash'
           }))
         );
