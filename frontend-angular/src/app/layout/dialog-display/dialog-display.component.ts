@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {Todo} from "../../model/todo.model";
 import {TodoManager} from "../../manager/todo.manager";
 import {ConfirmationService} from "primeng/api";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-dialog-display',
@@ -11,10 +12,11 @@ import {ConfirmationService} from "primeng/api";
   styleUrls: ['./dialog-display.component.scss'],
   providers: [ConfirmationService]
 })
-export class DialogDisplayComponent implements OnInit {
+export class DialogDisplayComponent implements OnInit, OnDestroy {
 
   public formGroup: FormGroup;
   private todo: Todo;
+  private readonly subscriptions: Subscription = new Subscription();
 
   constructor(
     private readonly todoManager: TodoManager,
@@ -25,9 +27,9 @@ export class DialogDisplayComponent implements OnInit {
   ) {
     this.todo = this.ddc.data;
     this.formGroup = formBuilder.group({
-        title: [null, Validators.required],
-        description: [null, Validators.required]
-      });
+      title: [null, Validators.required],
+      description: [null, Validators.required]
+    });
 
     this.formGroup.patchValue(this.todo || {});
   }
@@ -36,18 +38,18 @@ export class DialogDisplayComponent implements OnInit {
   }
 
   save(): void {
-    this.todoManager.saveTodo({
+    this.subscriptions.add(this.todoManager.saveTodo({
         ...this.todo,
         ...this.formGroup.value
       }
     ).subscribe(
       () => {
         this.ddr.close();
-      });
+      }));
   }
 
   cancel(event: Event): void {
-    if(!this.formGroup.invalid){
+    if (!this.formGroup.invalid) {
       this.confirmationService.confirm({
         target: event.target,
         message: 'Les données actuelles ne seront pas sauvegardées, continuer ?',
@@ -61,5 +63,9 @@ export class DialogDisplayComponent implements OnInit {
     } else {
       this.ddr.close();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

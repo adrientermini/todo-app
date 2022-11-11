@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodoManager} from "../../manager/todo.manager";
 import {Todo} from "../../model/todo.model";
 import {DialogService} from "primeng/dynamicdialog";
 import {DialogDisplayComponent} from "../dialog-display/dialog-display.component";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-crud-table',
@@ -11,9 +12,10 @@ import {ConfirmationService, MessageService} from "primeng/api";
   styleUrls: ['./crud-table.component.scss'],
   providers: [DialogService, ConfirmationService, MessageService]
 })
-export class CrudTableComponent implements OnInit {
+export class CrudTableComponent implements OnInit, OnDestroy {
 
   public todos: Todo[] = [];
+  private readonly subscriptions: Subscription = new Subscription();
 
   constructor(
     public todoManager: TodoManager,
@@ -22,9 +24,9 @@ export class CrudTableComponent implements OnInit {
     private readonly messageService: MessageService
   ) {
     this.todoManager.loadTodos();
-    this.todoManager.todos$.subscribe(
+    this.subscriptions.add(this.todoManager.todos$.subscribe(
       todos => this.todos = todos
-    );
+    ));
   }
 
   ngOnInit(): void {
@@ -47,15 +49,19 @@ export class CrudTableComponent implements OnInit {
       acceptLabel: 'Oui',
       rejectLabel: 'Non',
       accept: () => {
-        this.todoManager.deleteTodo(todo).subscribe(
+        this.subscriptions.add(this.todoManager.deleteTodo(todo).subscribe(
           () => this.messageService.add({
             severity:'success',
             summary:'Supprimé',
             detail:'Ce Todo a correctement été supprimé.',
             icon: 'pi pi-trash'
-          })
+          }))
         );
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
