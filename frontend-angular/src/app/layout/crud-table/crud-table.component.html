@@ -2,10 +2,11 @@
   <h1>Todo Manager</h1>
   <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success" (click)="showDialog()"></button>
 </div>
-<p-table responsiveLayout="scroll" #data [value]="this.todos" [rows]="5" [paginator]="true"
-         [globalFilterFields]="['title','description']" sortField="id" styleClass="p-datatable-striped"
-         [rowHover]="true" dataKey="id" currentPageReportTemplate="Page {currentPage} sur {totalPages}"
-         [showCurrentPageReport]="true">
+<p-table [value]="this.todos" #data [globalFilterFields]="['title','description']" [paginator]="true" [rows]="5"
+         [rowHover]="true" [scrollable]="true" scrollHeight="700px"
+         [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 20]" [filterDelay]="0"  dataKey="id"
+         sortField="id" currentPageReportTemplate="Page {currentPage} sur {totalPages}" responsiveLayout="scroll"
+         styleClass="p-datatable-striped p-datatable-gridlines">
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="title">Titre
