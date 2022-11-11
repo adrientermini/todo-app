@@ -1,10 +1,10 @@
-# TODO's Manager Project - Full simple web app - API Rest & Frontend
+# :white_check_mark: TODO's Manager Project - Full simple web app - API Rest & Frontend
 
 *UI available in :fr: only (:globe_with_meridians: i18n coming soon!)*
 
 ![screenshot](screenshot.png "Preview")
 
-## Description
+## :memo: Description
 
 This is a simple web app that allows the user to manage a todo list. 
 
@@ -20,7 +20,7 @@ The user can search for todos based on their title or description.
 
 The columns can be sorted. The table also uses a pagination.
 
-## API REST made with Spring Boot 2.7.4 & PostgreSQL
+## :gear: API REST made with Spring Boot 2.7.4 & PostgreSQL
 
 The various actions of _**CRUD**_ are exposed through different endpoints. The backend structure is organized with the usual layers : model, repository, service and controller.
 
@@ -61,7 +61,7 @@ Here is the list of the dependencies used for this project :
 
 * MapStruct
 
-## Frontend made with Angular 14.2.9 & PrimeNG
+## :art: Frontend made with Angular 14.2.9 & PrimeNG
 
 The UI has been designed with Angular, Sass and the component library **PrimeNG**.
 
