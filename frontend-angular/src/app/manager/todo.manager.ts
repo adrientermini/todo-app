@@ -5,7 +5,7 @@ import {TodoService} from "../service/todo.service";
 
 @Injectable()
 export class TodoManager {
-  private todoSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
+  private readonly todoSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
   public todos$: Observable<Todo[]> = this.todoSubject.asObservable();
 
   constructor(
