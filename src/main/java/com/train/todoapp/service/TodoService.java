@@ -22,18 +22,20 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
+    private final TodoMapper todoMapper;
+
     public TodoDTO getTodoById(final Long id) {
         Optional<Todo> todo = this.getTodoRepository().findById(id);
         log.debug(MessageFormat.format("Find TODO by ID : {0}", id));
 
-        return todo.map(TodoMapper.INSTANCE::toDto).orElse(null);
+        return todo.map(todoMapper::toDto).orElse(null);
     }
 
     public List<TodoDTO> getAllTodo() {
         Iterable<Todo> iterable = this.getTodoRepository().findAll();
         List<TodoDTO> result = StreamSupport
                 .stream(iterable.spliterator(), false)
-                .map(TodoMapper.INSTANCE::toDto)
+                .map(todoMapper::toDto)
                 .toList();
         log.debug("Find all TODOs");
 
@@ -45,14 +47,14 @@ public class TodoService {
         todo.ifPresent(t -> this.getTodoRepository().deleteById(t.getId()));
         log.debug(MessageFormat.format("Delete TODO by ID : {0}", id));
 
-        return todo.map(TodoMapper.INSTANCE::toDto).orElse(null);
+        return todo.map(todoMapper::toDto).orElse(null);
     }
 
     public TodoDTO saveTodo(TodoDTO todoDTO) {
-        Todo todo = TodoMapper.INSTANCE.toEntity(todoDTO);
+        Todo todo = todoMapper.toEntity(todoDTO);
         todo = this.getTodoRepository().save(todo);
         log.debug(MessageFormat.format("New TODO saved with id : {0}", todo.getId()));
 
-        return TodoMapper.INSTANCE.toDto(todo);
+        return todoMapper.toDto(todo);
     }
 }
